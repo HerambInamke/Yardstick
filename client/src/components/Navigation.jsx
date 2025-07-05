@@ -1,73 +1,106 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Wallet, Home, AlertCircle, PieChart, Target } from 'lucide-react';
+import { 
+  Home, 
+  CreditCard, 
+  BarChart3, 
+  Target,
+  Menu,
+  X
+} from 'lucide-react';
+import { useState } from 'react';
 
-export default function Navigation() {
+const Navigation = () => {
   const location = useLocation();
-  
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const navItems = [
     { path: '/', label: 'Dashboard', icon: Home },
-    { path: '/transactions', label: 'Transactions', icon: AlertCircle },
-    { path: '/analytics', label: 'Analytics', icon: PieChart },
+    { path: '/transactions', label: 'Transactions', icon: CreditCard },
+    { path: '/analytics', label: 'Analytics', icon: BarChart3 },
     { path: '/budget', label: 'Budget', icon: Target },
   ];
 
+  const isActive = (path) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(path);
+  };
+
   return (
-    <nav className="bg-white/90 backdrop-blur-md shadow-lg border-b border-slate-200/50 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <Wallet className="w-8 h-8 text-sky-600" />
-            <h1 className="text-xl font-bold bg-gradient-to-r from-sky-600 to-violet-600 bg-clip-text text-transparent">
-              Finance Visualizer
-            </h1>
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-sky-500 to-violet-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">Y</span>
+              </div>
+              <span className="text-xl font-semibold text-slate-800">Yardstick</span>
+            </Link>
           </div>
-          
-          {/* Navigation Links */}
+
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => {
-              const IconComponent = item.icon;
-              const isActive = location.pathname === item.path;
+              const Icon = item.icon;
               return (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-200 ${
-                    isActive
-                      ? 'bg-sky-100 text-sky-700 shadow-sm'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isActive(item.path)
+                      ? 'bg-sky-50 text-sky-700 border border-sky-200 shadow-sm'
+                      : 'text-slate-600 hover:text-sky-600 hover:bg-slate-50'
                   }`}
                 >
-                  <IconComponent className="w-4 h-4" />
-                  <span className="font-medium">{item.label}</span>
+                  <Icon size={18} />
+                  <span>{item.label}</span>
                 </Link>
               );
             })}
           </div>
 
-          {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center space-x-2">
-            {navItems.map((item) => {
-              const IconComponent = item.icon;
-              const isActive = location.pathname === item.path;
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`p-2 rounded-xl transition-all duration-200 ${
-                    isActive
-                      ? 'bg-sky-100 text-sky-700 shadow-sm'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                  }`}
-                  title={item.label}
-                >
-                  <IconComponent className="w-5 h-5" />
-                </Link>
-              );
-            })}
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg text-slate-600 hover:text-sky-600 hover:bg-slate-50 transition-colors"
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-slate-200">
+            <div className="flex flex-col space-y-2">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      isActive(item.path)
+                        ? 'bg-sky-50 text-sky-700 border border-sky-200'
+                        : 'text-slate-600 hover:text-sky-600 hover:bg-slate-50'
+                    }`}
+                  >
+                    <Icon size={18} />
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
-} 
+};
+
+export default Navigation; 

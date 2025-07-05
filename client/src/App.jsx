@@ -44,7 +44,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-sky-50 to-violet-50">
+      <div className="min-h-screen">
         <Navigation />
         <AppRoutes
           transactions={transactions}

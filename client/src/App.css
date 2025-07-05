@@ -1,2 +1,124 @@
 /* Purge default styles, use Tailwind for all styling */
 @import "tailwindcss";
+
+/* Import Google Fonts for old-school aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;500;600&display=swap');
+
+/* Custom CSS Variables for aesthetic colors */
+:root {
+  --primary-sage: #9CAF88;
+  --primary-sage-light: #B8C5A6;
+  --primary-sage-dark: #7A8B6A;
+  --accent-cream: #F5F1E8;
+  --accent-cream-dark: #E8E0D1;
+  --text-charcoal: #2C3E50;
+  --text-charcoal-light: #5D6D7E;
+  --accent-terracotta: #D35400;
+  --accent-terracotta-light: #E67E22;
+  --accent-navy: #34495E;
+  --accent-navy-light: #5D6D7E;
+  --success-olive: #7D6608;
+  --success-olive-light: #A4A4A4;
+  --warning-amber: #F39C12;
+  --warning-amber-light: #F7DC6F;
+  --error-rust: #C0392B;
+  --error-rust-light: #E74C3C;
+}
+
+/* Apply custom fonts */
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: var(--text-charcoal);
+  background: linear-gradient(135deg, var(--accent-cream) 0%, #F8F6F0 50%, #F0EDE4 100%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: var(--text-charcoal);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--accent-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-sage);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-sage-dark);
+}
+
+/* Enhanced focus states */
+*:focus {
+  outline: 2px solid var(--primary-sage);
+  outline-offset: 2px;
+}
+
+/* Custom button styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-sage) 0%, var(--primary-sage-dark) 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Card enhancements */
+.card-aesthetic {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(156, 175, 136, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.card-aesthetic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Enhanced spacing utilities */
+.space-aesthetic {
+  margin: 2rem 0;
+}
+
+.space-aesthetic-sm {
+  margin: 1rem 0;
+}
+
+.space-aesthetic-lg {
+  margin: 3rem 0;
+}
+
+/* Custom input styles */
+.input-aesthetic {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(156, 175, 136, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.input-aesthetic:focus {
+  border-color: var(--primary-sage);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 3px rgba(156, 175, 136, 0.1);
+}
