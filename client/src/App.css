@@ -1,0 +1,2 @@
+/* Purge default styles, use Tailwind for all styling */
+@import "tailwindcss";
