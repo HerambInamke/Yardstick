@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import './App.css'
 import TransactionForm from './components/TransactionForm'
@@ -10,6 +9,8 @@ import BudgetManager from './components/BudgetManager'
 import SpendingInsights from './components/SpendingInsights'
 import Dashboard from './components/Dashboard'
 import { Wallet, TrendingUp, AlertCircle, Target, BarChart3, Settings, Home, PieChart } from 'lucide-react'
+import { dummyTransactions, dummyBudgets, categories } from './dummyData'
+import { useState } from 'react'
 
 // Dashboard Page Component
 function DashboardPage({ transactions, categories, budgets, currentMonth, onSaveTransaction, onEditTransaction, onDeleteTransaction, onUpdateBudget }) {
@@ -274,73 +275,22 @@ function Navigation() {
 }
 
 function App() {
-  const [transactions, setTransactions] = useState([])
+  // Use static dummy data
+  const [transactions] = useState(dummyTransactions)
+  const [budgets] = useState(dummyBudgets)
   const [editTransaction, setEditTransaction] = useState(null)
-  const [budgets, setBudgets] = useState({})
-  const [currentMonth, setCurrentMonth] = useState(new Date().toISOString().slice(0, 7))
+  const [currentMonth] = useState(new Date().toISOString().slice(0, 7))
 
-  // Predefined categories for Stage 2 & 3
-  const categories = [
-    'Food & Dining',
-    'Transportation',
-    'Shopping',
-    'Entertainment',
-    'Healthcare',
-    'Utilities',
-    'Education',
-    'Travel',
-    'Other'
-  ]
-
-  // Initialize budgets for all categories
-  useEffect(() => {
-    const defaultBudgets = {}
-    categories.forEach(category => {
-      if (!budgets[category]) {
-        defaultBudgets[category] = 0
-      }
-    })
-    if (Object.keys(defaultBudgets).length > 0) {
-      setBudgets(prev => ({ ...prev, ...defaultBudgets }))
-    }
-  }, [categories])
-
-  // Add or update transaction
-  const handleSaveTransaction = (transaction) => {
-    if (transaction.id) {
-      setTransactions(transactions.map(t => t.id === transaction.id ? transaction : t))
-    } else {
-      setTransactions([
-        ...transactions,
-        { ...transaction, id: Date.now().toString() },
-      ])
-    }
-    setEditTransaction(null)
-  }
-
-  // Delete transaction
-  const handleDeleteTransaction = (id) => {
-    setTransactions(transactions.filter(t => t.id !== id))
-  }
-
-  // Edit transaction
-  const handleEditTransaction = (transaction) => {
-    setEditTransaction(transaction)
-  }
-
-  // Update budget
-  const handleUpdateBudget = (category, amount) => {
-    setBudgets(prev => ({
-      ...prev,
-      [category]: Number(amount)
-    }))
-  }
+  // Dummy handlers (no-op, since data is static)
+  const handleSaveTransaction = () => {}
+  const handleDeleteTransaction = () => {}
+  const handleEditTransaction = () => {}
+  const handleUpdateBudget = () => {}
 
   return (
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <Navigation />
-        
         <Routes>
           <Route 
             path="/" 

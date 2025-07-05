@@ -1,0 +1,96 @@
+export const dummyTransactions = [
+  {
+    id: '1',
+    amount: 1200,
+    date: '2024-06-01',
+    description: 'Groceries at Supermart',
+    category: 'Food & Dining',
+  },
+  {
+    id: '2',
+    amount: 300,
+    date: '2024-06-02',
+    description: 'Bus pass',
+    category: 'Transportation',
+  },
+  {
+    id: '3',
+    amount: 2500,
+    date: '2024-06-03',
+    description: 'Online shopping',
+    category: 'Shopping',
+  },
+  {
+    id: '4',
+    amount: 800,
+    date: '2024-06-04',
+    description: 'Movie night',
+    category: 'Entertainment',
+  },
+  {
+    id: '5',
+    amount: 600,
+    date: '2024-06-05',
+    description: 'Doctor visit',
+    category: 'Healthcare',
+  },
+  {
+    id: '6',
+    amount: 400,
+    date: '2024-06-06',
+    description: 'Electricity bill',
+    category: 'Utilities',
+  },
+  {
+    id: '7',
+    amount: 1500,
+    date: '2024-06-07',
+    description: 'Course fee',
+    category: 'Education',
+  },
+  {
+    id: '8',
+    amount: 2200,
+    date: '2024-06-08',
+    description: 'Weekend trip',
+    category: 'Travel',
+  },
+  {
+    id: '9',
+    amount: 350,
+    date: '2024-06-09',
+    description: 'Stationery',
+    category: 'Other',
+  },
+  {
+    id: '10',
+    amount: 900,
+    date: '2024-06-10',
+    description: 'Dinner with friends',
+    category: 'Food & Dining',
+  },
+];
+
+export const dummyBudgets = {
+  'Food & Dining': 2000,
+  'Transportation': 1000,
+  'Shopping': 3000,
+  'Entertainment': 1500,
+  'Healthcare': 1000,
+  'Utilities': 800,
+  'Education': 2000,
+  'Travel': 2500,
+  'Other': 500,
+};
+
+export const categories = [
+  'Food & Dining',
+  'Transportation',
+  'Shopping',
+  'Entertainment',
+  'Healthcare',
+  'Utilities',
+  'Education',
+  'Travel',
+  'Other',
+]; 
